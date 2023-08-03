@@ -1,0 +1,27 @@
+include "config.path"
+
+-- 线程个数
+thread = 8
+
+-- 启动配置
+bootstrap = "snlua bootstrap"   -- The service for bootstrap
+start = "main_ws_client"  -- main script
+
+harbor = 0
+
+enablessl = true
+
+
+if $DAEMON then
+    logger = "logger_service"
+    logservice = "snlua"
+    daemon = "./skynet_client.pid"
+end
+
+
+certfile = "./xxx.pem"
+keyfile = "./xxx.key"
+
+
+
+

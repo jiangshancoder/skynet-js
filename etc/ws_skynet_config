@@ -1,0 +1,32 @@
+include "config.path"
+
+-- 线程个数
+thread = 8
+
+-- 启动配置
+bootstrap = "snlua bootstrap"   -- The service for bootstrap
+start = "main_ws"  -- main script
+
+harbor = 0
+
+enablessl = true
+
+
+if $DAEMON then
+    logger = "logger_service"
+    logservice = "snlua"
+    daemon = "./skynet.pid"
+end
+
+
+pb_mgr_num = 6--协议服务数量
+loginserver_num = 2--登录服数量
+gen_agent_num = 5 --创建agent服务数量
+gen_pre_agent_num = 5 --预创建agent数量
+
+certfile = "./xxx.pem"
+keyfile = "./xxx.key"
+
+
+
+

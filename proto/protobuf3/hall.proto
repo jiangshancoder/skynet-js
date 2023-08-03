@@ -1,0 +1,49 @@
+syntax = "proto3";
+package GameProto;
+
+message Package{
+    string type = 1; //消息名
+    int32 msg_len = 2; //真实消息包长度
+    int32 session = 3; //每条消息唯一
+}
+
+
+message c2s_testcmd{
+    string uid = 1; //玩家id
+}
+
+message s2c_testcmd{
+    bool ret = 1; //true=已收到
+}
+
+
+message c2s_heartbeat{
+
+}
+message s2c_heartbeat{
+    int32 time = 1;//当前服务器时间
+    bool ok = 2;//true
+}
+
+message Room_List{
+    int32   room_level          = 1;//房间等级 新手 中级 高手 等等
+}
+
+//验证成功后服务器主动推送
+message s2c_baseinfo{
+    string pid      = 1; //玩家账号
+    string headurl  = 4; //用户头像
+    repeated Room_List roomlist = 5;//房间列表
+    string nickname  = 6; //昵称
+    int32 server_time  = 7; //服务器时间
+}
+
+
+//获取房间详细信息
+message c2s_get_room_detail{
+}
+message s2c_get_room_detail{
+    repeated int32 player_count = 1; //房间人数
+    repeated int32 room_level   = 2; //房间等级
+}
+

@@ -1,0 +1,43 @@
+--这里存放全局变量
+
+
+--房间等级
+ROOM_LEVEL_MAX = 4
+
+--一个房间最多多少人
+ROOM_PLAYER_MAX = 6
+
+--最少两人开局
+ROOM_START_GAME_MIN_PLAYER_COUNT = 2
+
+
+--房间状态
+ROOM_STATE_WAIT = 0 --等待开局
+ROOM_STATE_GAMING = 1 --正在游戏
+
+
+--玩家状态
+PLAYER_STATE_WAIT = 0--等待开局
+PLAYER_STATE_GAMING = 1--正在游戏
+PLAYER_STATE_GIVE_UP = 2--已弃牌
+
+ROOM_MIN_CHIPS = 1000--该房间最少携带筹码
+
+
+TIME_SLEEP_1 = 10--满两人后，多少秒后开局
+TIME_SLEEP_FAPAI_ANIMATIONS = 2--发牌动画
+TIME_SLEEP_BET = 10--下注时间
+TIME_SLEEP_OPEN_PUBLIC_CARDS = 10--翻牌动画
+
+
+DEFINE_SMALL_BLIND_AMOUNT = 25--小盲注
+DEFINE_BIG_BLIND_AMOUNT = 50--大盲注
+
+SMALL_BIND_STATE = 1 --小盲
+BIG_BIND_STATE = 2 --大盲
+
+
+OP_GIVE_UP = 1--弃牌
+OP_PASS = 2--过牌 
+OP_FOLLOW = 3--跟注
+OP_BET = 4--下注

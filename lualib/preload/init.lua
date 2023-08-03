@@ -1,0 +1,6 @@
+require "preload.dump"
+require "preload.string"
+require "preload.table"
+require "preload.print"
+require "preload.define"
+require "preload.global"

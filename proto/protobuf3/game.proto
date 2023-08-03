@@ -1,0 +1,31 @@
+
+package GameProto;
+
+
+
+message Game_Player_info {
+    string pid                              = 2;//玩家ID
+    string nickname                         = 3;//昵称
+}
+message s2c_Room_info {
+    int32 current_player_chair              = 4; //当前操作玩家序号
+    repeated Game_Player_info players       = 5; //玩家数据
+}
+
+//新玩家进入房间
+message s2c_add_player{
+    Game_Player_info player       = 1;//所有人基础数据
+}
+//退出房间
+message c2s_quit_room{
+}
+
+message s2c_del_player{
+    string pid                              = 1;//退出玩家pid
+}
+
+//开始游戏
+message s2c_start_game{
+    s2c_Room_info room_data     = 1;//房间数据
+}
+

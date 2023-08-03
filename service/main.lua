@@ -1,0 +1,67 @@
+local skynet = require "skynet"
+local service = require "skynet.service"
+
+local max_client = 64
+
+local lfs = require "lfs"
+
+
+local function simple_echo_client_service(protocol)
+    local skynet = require "skynet"
+    local websocket = require "http.websocket"
+    local url = string.format("%s://127.0.0.1:8888/test_websocket", protocol)
+    local ws_id = websocket.connect(url)
+    while true do
+        local msg = "hello world!"
+        websocket.write(ws_id, msg)
+        print(">: " .. msg, ws_id)
+        local resp, close_reason = websocket.read(ws_id)
+        print("<: " .. (resp and resp or "[Close] " .. close_reason))
+        if not resp then
+            print("echo server close.")
+            break
+        end
+        websocket.ping(ws_id)
+        skynet.sleep(200)
+    end
+end
+
+local debug_console_inject = require "debug_console_inject"
+skynet.start(function()
+    skynet.error("Server start")
+    if not skynet.getenv "daemon" then
+        skynet.newservice("console")
+    end
+    local address = skynet.newservice("debug_console",8000)
+    debug_console_inject(address)
+    local ws_watchdog = skynet.newservice("ws_watchdog")
+    local protocol = "ws"
+    local ws_port = 8888
+    skynet.call(ws_watchdog, "lua", "start", {
+        port = ws_port,
+        maxclient = max_client,
+        nodelay = true,
+        protocol = protocol,
+    })
+    skynet.error("websocket watchdog listen on", ws_port)
+
+    local web_watchdog = skynet.newservice("web_watchdog")
+    local web_port = 8889
+    skynet.call(web_watchdog, "lua", "start", {
+        port = web_port,
+        agent_cnt = 10,
+        protocol = "http",
+    })
+    skynet.error("web watchdog listen on", web_port)
+
+
+    print({"这是一个table","print也可以打印table","并且显示文件和行号"})
+
+
+
+    local daemon = skynet.getenv("daemon")
+
+    print(daemon,"daemon")
+
+    skynet.exit()
+end)
