@@ -30,6 +30,23 @@ lua-lfs找不到在哪里扒的了
 
 
 
+对原skynet有一点改动
+
+`skynet\lualib\skynet\db\mongo.lua`
+
+中，增加一个函数如下：
+
+```lua
+function mongo_collection:getIndexes()
+	local res = self.database:runCommand("listIndexes",self.name)
+	if res and res.ok == 1 then
+		return res.cursor.firstBatch
+	else
+		return
+	end
+end
+```
+
 
 
 
