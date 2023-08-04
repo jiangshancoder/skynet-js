@@ -1,7 +1,7 @@
 
 [submodule "skynet"]
 	path = skynet
-    url = https://github.com/cloudwu/skynet.git
+	url = https://github.com/cloudwu/skynet.git
 [submodule "3rd/lua-zset"]
 	path = 3rd/lua-zset
 	url = https://github.com/xjdrew/lua-zset.git
@@ -23,3 +23,4 @@
 [submodule "3rd/lua-yyjson"]
 	path = 3rd/lua-yyjson
 	url = https://github.com/cloudfreexiao/lua-yyjson.git
+
