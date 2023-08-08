@@ -47,7 +47,20 @@ function mongo_collection:getIndexes()
 end
 ```
 
+`skynet\lualib\http\websocket.lua`
 
+中，增加一个函数如下：
+
+```lua
+注释 resolve_accept 函数下的
+try_handle(self, "connect")
+并在
+try_handle(self, "handshake", header, url)
+下面增加
+try_handle(self, "connect")
+
+ps:为了能在握手时验证连接是否可信任，握手成功才走connect接口
+```
 
 
 
